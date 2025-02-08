@@ -1,1 +1,32 @@
-spring.application.name=jpa
+# 서버 포트 번호 지정
+server:
+  port: 8080
+# color log 설정
+spring:
+  output:
+    ansi:
+      enabled: always
+# db 연결 -> 이후 db_dev.mv.db 라는 파일(db 역할을 함) 생성
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update # 재시작하면 테이블 지우고 다시 만듦: update 유지
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.orm.jdbc.extract: TRACE
+    org.springframework.transaction.interceptor: TRACE
