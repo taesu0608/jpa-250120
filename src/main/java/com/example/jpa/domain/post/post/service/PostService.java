@@ -16,8 +16,6 @@ public class PostService {
     public Post write(String title, String body) {
         // 1. Post 조립
         Post post = new Post().builder()
-                .createdDate(LocalDateTime.now())
-                .modifiedDate(LocalDateTime.now())
                 .title(title)
                 .body(body).build();
 //        post.setId(1L); id는 기본적으로 JPA가 관리함.

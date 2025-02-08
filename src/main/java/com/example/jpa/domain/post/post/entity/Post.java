@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
@@ -26,7 +26,7 @@ public class Post {
     @CreatedDate
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime createdDate;
-    @LastModifiedBy
+    @LastModifiedDate
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedDate;
     @Column(length = 100)
