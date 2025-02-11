@@ -32,17 +32,33 @@ public class BeanInitData {
             Post p2 = postService.write("title2", "body3");
             Post p3 = postService.write("title3", "body3");
 
+            Comment c1 = commentService.write(p1,"comment4");
+
         };
     }
 
     @Bean
     @Order(2)
     public ApplicationRunner applicationRunner2() {
-        return args -> {
-          Comment c1 = commentService.write(1L,"comment");
-          Comment c2 = commentService.write(1L,"comment");
-          Comment c3 = commentService.write(1L,"comment");
+        return new ApplicationRunner() {
+            @Override
+            @Transactional
+            public void run(ApplicationArguments args) throws Exception {
+                Comment c1 = commentService.findById(1L).get();
+                Post post = c1.getPost();
+            }
+        };
+    }
 
+    @Bean
+    @Order(3)
+    public ApplicationRunner applicationRunner3() {
+        return new ApplicationRunner() {
+            @Override
+            public void run(ApplicationArguments args) throws Exception {
+                Comment c1 = commentService.findById(1L).get();
+                Comment c2 = commentService.findById(1L).get();
+            }
         };
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jpa.domain.post.post.service;
 
+import com.example.jpa.domain.post.comment.entity.Comment;
 import com.example.jpa.domain.post.post.entity.Post;
 import com.example.jpa.domain.post.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,4 +45,6 @@ public class PostService {
     public void delete(Post post){
         postRepository.delete(post);
     }
+
+
 }
