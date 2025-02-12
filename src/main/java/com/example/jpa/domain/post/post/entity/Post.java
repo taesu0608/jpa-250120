@@ -32,16 +32,10 @@ public class Post {
     @LastModifiedDate
     @Setter(AccessLevel.PRIVATE)
     private LocalDateTime modifiedDate;
+
     @Column(length = 100)
     private String title;
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Builder.Default
-    private List<Comment> comments = new ArrayList<>();
-
-    public void addComment(Comment comment) {
-        comments.add(comment);
-    }
 }
