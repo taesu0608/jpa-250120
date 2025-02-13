@@ -3,6 +3,7 @@ package com.example.jpa.domain.post.post.entity;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.jpa.domain.post.comment.entity.Comment;
 import jakarta.persistence.*;
@@ -38,4 +39,20 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.setPost(this);
+    }
+    public void removeComment (Comment c){
+        comments.remove(c);
+    }
+    public void removeComment(long id) {
+        Optional<Comment> opComment = comments.stream().filter(com->com.getId() == id)
+                .findFirst();
+
+        opComment.ifPresent(comment -> comments.remove(comment));
+    }
 }

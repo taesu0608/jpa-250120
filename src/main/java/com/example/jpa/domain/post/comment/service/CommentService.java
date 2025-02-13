@@ -32,4 +32,7 @@ public class CommentService {
         return commentRepository.findById(l);
     }
 
+    public Comment save(Comment c1) {
+        return commentRepository.save(c1);
+    }
 }

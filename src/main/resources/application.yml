@@ -15,7 +15,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update # 재시작하면 테이블 지우고 다시 만듦: update 유지
+      ddl-auto: create # 재시작하면 테이블 지우고 다시 만듦: update 유지
     show-sql: false
     properties:
       hibernate:
